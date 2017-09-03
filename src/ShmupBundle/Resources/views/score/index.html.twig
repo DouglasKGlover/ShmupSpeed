@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Scores list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Score</th>
+                <th>Datecreated</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for score in scores %}
+            <tr>
+                <td><a href="{{ path('score_show', { 'id': score.id }) }}">{{ score.id }}</a></td>
+                <td>{{ score.name }}</td>
+                <td>{{ score.email }}</td>
+                <td>{{ score.score }}</td>
+                <td>{% if score.dateCreated %}{{ score.dateCreated|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('score_show', { 'id': score.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('score_edit', { 'id': score.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('score_new') }}">Create a new score</a>
+        </li>
+    </ul>
+{% endblock %}

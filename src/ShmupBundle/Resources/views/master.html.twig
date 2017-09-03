@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}ShmupSpeed{% endblock %}</title>
+  <link rel="icon" type="image/x-icon" href="{{ asset('img/shmup.ico') }}" />
+  {% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
+  {% endblock %}
+</head>
+<body>
+{% block body %}{% endblock %}
+{% block javascripts %}
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="{{ asset('js/controller.js') }}"></script>
+  <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+</body>
+</html>
