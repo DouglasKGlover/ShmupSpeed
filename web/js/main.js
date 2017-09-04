@@ -39,6 +39,7 @@ function countDown(){
             countdownDone = true;
             clearInterval(msecInt);
             $("#options, #game").find("input").prop("disabled", false);
+            $(".tap-button").prop("disabled", true);
         }
     },10);
 }
@@ -54,6 +55,7 @@ function reset(){
     $("#score").text("000");
 
     $(".reset, .submit, #username input").prop("disabled", true);
+    $(".tap-button").prop("disabled", false);
 }
 
 function submitScore(e){
@@ -189,7 +191,6 @@ $(document).ready(function(){
             $("#options").find("input").removeClass("active");
             $(".wrapper").find("section").removeClass("active");
             $(this).addClass("active");
-            $("body")[0].className = selectedSection;
 
             setTimeout(function(){
                 swapping = false;

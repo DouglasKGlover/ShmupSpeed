@@ -37,7 +37,7 @@
 
 @mixin breakpoint($point) {
   @if $point == large {
-    @media (min-width: 768px) { @content; }
+    @media (min-width: 769px) { @content; }
   }
   @else if $point == medium {
     @media (max-width: 768px) { @content; }
@@ -130,10 +130,7 @@ html, body{
   }
 
   @include breakpoint(medium){
-
-    &.about{
-      overflow: scroll;
-    }
+    overflow: scroll;
   }
 }
 
@@ -152,6 +149,17 @@ p{
 
   strong{
     color: $blue;
+  }
+}
+
+
+
+input[type=button] {
+  transition: opacity .2s ease;
+
+  &:disabled {
+    opacity: 0.25;
+    cursor: default;
   }
 }
 
@@ -297,6 +305,7 @@ footer{
     &:not(.active){
       transform: translateY(100%);
       opacity: 0;
+      height: 0;
     }
 
 
@@ -361,6 +370,7 @@ footer{
 
         #tap{
           width: 100%;
+          @include turnOn(1s, 5s);
 
           .tap-button{
             position: absolute;
@@ -374,13 +384,11 @@ footer{
             &:first-of-type{
               left: 10%;
               background: $pink;
-              @include turnOn(1s, 5s);
             }
 
             &:last-of-type{
               right: 10%;
               background: $blue;
-              @include turnOn(1s, 5.5s);
             }
           }
         }
