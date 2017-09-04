@@ -139,6 +139,7 @@ $(document).ready(function(){
     $(".tap-button").click(function(e){
         btnPressed();
         btnReleased();
+        ga('send', 'event', 'Mobile', 'Tap pressed', e);
     });
 
     // Gamepad Controller
