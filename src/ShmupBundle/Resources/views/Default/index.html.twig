@@ -52,6 +52,12 @@
             <div id="errors">
                 <p>Enter a name!</p>
             </div>
+
+            {# Tap Buttons #}
+            <div id="tap" class="mobile">
+                <input type="button" value="A" class="tap-button">
+                <input type="button" value="B" class="tap-button">
+            </div>
         </section>
 
         {# Leaderboard #}
@@ -76,6 +82,7 @@
         <section id="about">
             <p>ShmupSpeed.com aims to provide a fun and accurate method of tracking your "Presses Per Second" (PPS). Shoot-em-up game fans work hard to press buttons super fast to kill alien scum and the like, and this site is here to help you practice and gauge your skills.</p>
             <p>Here on the site you can use your <strong>Keyboard</strong>, or any <strong>Gamepad controller</strong> connected to your PC to test your button mashing mettle. While on the GAME page just start pressing and the timer will start, and your score will go up! Divide by ten and you've got your PPS!</p>
+            <p class="mobile">On your phone you can <strong>tap on the A & B buttons</strong> provided to test your skills on the go!</p>
             <p>The inspiration for this site was the Hudson Shooting Watches from Japan, which have not been available for sale since around 2008, shown below, and follows the same logic for calculating PPS:</p>
             <img src="{{ asset('img/hudson.png') }}" alt="Hudson Shooting Watch">
         </section>
@@ -83,7 +90,7 @@
     </div>
 
     {# Floating cartridge - download the NES ROM #}
-    <section id="cartridge">
+    <section id="cartridge" class="desktop">
         <a href="{{ asset('rom/shmupspeed.nes') }}">
             <img src="{{ asset('img/cartridge.png') }}" alt="Shmup Speed NES Cartridge">
         </a>

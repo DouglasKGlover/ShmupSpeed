@@ -35,6 +35,18 @@
   animation-delay: $delay;
 }
 
+@mixin breakpoint($point) {
+  @if $point == large {
+    @media (min-width: 768px) { @content; }
+  }
+  @else if $point == medium {
+    @media (max-width: 768px) { @content; }
+  }
+  @else if $point == small {
+    @media (max-width: 480px) { @content; }
+  }
+}
+
 $pink: #ff00e4;
 $blue: #00baff;
 $ease-out-quint: cubic-bezier(0.230, 1.000, 0.320, 1.000);
@@ -95,6 +107,7 @@ $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
 html, body{
   margin: 0;
   height: 100%;
+  width: 100%;
   background: radial-gradient(ellipse at top, #242424 0%, #000 100%);
   overflow: hidden;
   color: white;
@@ -114,6 +127,13 @@ html, body{
       z-index:2;
       background-size:100% 2px, 3px 100%;
       pointer-events:none;
+  }
+
+  @include breakpoint(medium){
+
+    &.about{
+      overflow: scroll;
+    }
   }
 }
 
@@ -137,6 +157,12 @@ p{
 
 .digital{
   font-family: 'Press Start 2P', cursive;
+}
+
+.mobile{ display: none; }
+@include breakpoint(medium){
+  .mobile{ display: block; }
+  .desktop{ display: none; }
 }
 
 
@@ -169,6 +195,10 @@ footer{
   font-size: .9em;
   padding: .3em 1em;
   text-align: right;
+
+  @include breakpoint(medium){
+    width: 100%;
+  }
 }
 
 
@@ -244,6 +274,10 @@ footer{
       color: $blue;
       cursor: default
     }
+
+    @include breakpoint(medium){
+      font-size: .8em;
+    }
   }
 }
 
@@ -308,6 +342,48 @@ footer{
         color: $pink;
         font-size: 1.3em;
         animation: flash 3s linear infinite;
+      }
+
+      @include breakpoint(medium){
+
+        #timer{
+          font-size: 12vw;
+          margin-bottom: 10px;
+        }
+        #score{
+          font-size: 10vw;
+          margin-bottom: 10px;
+        }
+        #username input[type=text]{
+          font-size: 8vw;
+          width: 100%;
+        }
+
+        #tap{
+          width: 100%;
+
+          .tap-button{
+            position: absolute;
+            font-size: 2em;
+            line-height: 2em;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 0 .7em;
+
+            &:first-of-type{
+              left: 10%;
+              background: $pink;
+              @include turnOn(1s, 5s);
+            }
+
+            &:last-of-type{
+              right: 10%;
+              background: $blue;
+              @include turnOn(1s, 5.5s);
+            }
+          }
+        }
       }
     }
 

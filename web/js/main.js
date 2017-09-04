@@ -133,6 +133,13 @@ $(document).ready(function(){
         ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
+    // Tap (mobile)
+    $(".tap-button").click(function(e){
+        btnPressed();
+        btnReleased();
+    });
+
+    // Gamepad Controller
     var $gamepad = new Gamepad();
     $gamepad.on("connect", function(e){
         ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
@@ -182,6 +189,7 @@ $(document).ready(function(){
             $("#options").find("input").removeClass("active");
             $(".wrapper").find("section").removeClass("active");
             $(this).addClass("active");
+            $("body")[0].className = selectedSection;
 
             setTimeout(function(){
                 swapping = false;
