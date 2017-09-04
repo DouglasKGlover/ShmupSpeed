@@ -320,6 +320,20 @@ footer{
     }
 
 
+    /* Support */
+    &#support{
+      width: 1024px;
+      max-width: 95%;
+      margin: 0 auto;
+      position: relative;
+      text-align: left;
+
+      a{
+        color: $blue;
+      }
+    }
+
+
     /* Game */
     &#game{
       z-index: 3;
