@@ -18,19 +18,14 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $scores = $em->getRepository('ShmupBundle:Score')->findBy(
-          array(),
-          array('score' => 'DESC', 'dateCreated' => 'DESC')
-        );
-
-        /*$query = $em->createQuery(
-          'SELECT s
-            FROM ShmupBundle:Score s
-            GROUP BY s.name
+        $query = $em->createQuery(
+          'select s.name, max(s.score) as score
+            from ShmupBundle:Score s
+            group by s.name
             ORDER BY s.score DESC'
         );
 
-        $scores = $query->getResult();*/
+        $scores = $query->getResult();
 
         $score = new Score();
         $form = $this->createForm('ShmupBundle\Form\ScoreType', $score);
