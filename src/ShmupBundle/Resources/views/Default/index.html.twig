@@ -73,11 +73,11 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for key, score in scoresKeyboard|slice(0, 10) %}
+                {% for keyK, scoreK in scoresKeyboard|slice(0, 10) %}
                     <tr>
-                        <td>{{ key+1 }}</td>
-                        <td>{{ score.name|slice(0,3) }}</td>
-                        <td>{{ score.score }}</td>
+                        <td>{{ keyK+1 }}</td>
+                        <td>{{ scoreK.name|slice(0,3) }}</td>
+                        <td>{{ scoreK.score }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -90,11 +90,11 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for key, score in scoresController|slice(0, 10) %}
+                {% for keyT, scoreC in scoresController|slice(0, 10) %}
                     <tr>
-                        <td>{{ key+1 }}</td>
-                        <td>{{ score.name|slice(0,3) }}</td>
-                        <td>{{ score.score }}</td>
+                        <td>{{ keyT+1 }}</td>
+                        <td>{{ scoreC.name|slice(0,3) }}</td>
+                        <td>{{ scoreC.score }}</td>
                     </tr>
                 {% endfor %}
             </table>
@@ -107,11 +107,11 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for key, score in scoresTouch|slice(0, 10) %}
+                {% for keyT, scoreT in scoresTouch|slice(0, 10) %}
                     <tr>
-                        <td>{{ key+1 }}</td>
-                        <td>{{ score.name|slice(0,3) }}</td>
-                        <td>{{ score.score }}</td>
+                        <td>{{ keyT+1 }}</td>
+                        <td>{{ scoreT.name|slice(0,3) }}</td>
+                        <td>{{ scoreT.score }}</td>
                     </tr>
                 {% endfor %}
             </table>

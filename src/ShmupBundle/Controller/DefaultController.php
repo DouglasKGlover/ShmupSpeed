@@ -27,24 +27,24 @@ class DefaultController extends Controller
         );*/
 
         $kb = $em->createQuery(
-          "SELECT s 
-          FROM ShmupBundle:Score s 
-          WHERE s.platform='keyboard'
-          ORDER BY s.score"
+          "SELECT a 
+          FROM ShmupBundle:Score a 
+          WHERE a.platform='keyboard'
+          ORDER BY a.score"
         );
 
         $cn = $em->createQuery(
-          "SELECT s 
-          FROM ShmupBundle:Score s 
-          WHERE s.platform='controller'
-          ORDER BY s.score"
+          "SELECT b 
+          FROM ShmupBundle:Score b
+          WHERE b.platform='controller'
+          ORDER BY b.score"
         );
 
         $to = $em->createQuery(
-          "SELECT s 
-          FROM ShmupBundle:Score s 
-          WHERE s.platform='touch'
-          ORDER BY s.score"
+          "SELECT c 
+          FROM ShmupBundle:Score c 
+          WHERE c.platform='touch'
+          ORDER BY c.score"
         );
 
         /*$query = $em->createQuery(

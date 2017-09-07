@@ -134,7 +134,7 @@ $(document).ready(function(){
     });
     $(window).keyup(function(e){
         btnReleased();
-        platform = "keyboard";
+        if(countingDown){ platform = "keyboard"; }
         ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
