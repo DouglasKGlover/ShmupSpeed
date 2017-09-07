@@ -17,6 +17,7 @@ class ScoreType extends AbstractType
           ->add('name')
           ->add('email')
           ->add('score')
+          ->add('platform')
           ->add('dateCreated');
     }
     

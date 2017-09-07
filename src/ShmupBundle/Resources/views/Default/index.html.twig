@@ -18,6 +18,7 @@
         {{ form_row(scoreForm.name) }}
         {{ form_row(scoreForm.email) }}
         {{ form_row(scoreForm.score) }}
+        {{ form_row(scoreForm.platform) }}
         {{ form_row(scoreForm.dateCreated) }}
 		{{ form_end(scoreForm) }}
 		</section>
@@ -65,15 +66,52 @@
         <section id="leaderboard" class="digital">
             <table>
                 <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>Score</th>
+                    <th colspan="3">Keyboard</th>
                 </tr>
-                {% for key, score in scores|slice(0, 10) %}
+                <tr>
+                    <th width="50px">#</th>
+                    <th width="100px">Name</th>
+                    <th width="100px">Score</th>
+                </tr>
+                {% for key, score in scoresKeyboard|slice(0, 10) %}
                     <tr>
-                        <td width="50px">{{ key+1 }}</td>
-                        <td width="100px">{{ score.name|slice(0,3) }}</td>
-                        <td width="100px">{{ score.score }}</td>
+                        <td>{{ key+1 }}</td>
+                        <td>{{ score.name|slice(0,3) }}</td>
+                        <td>{{ score.score }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <tr>
+                    <th colspan="3">Controller</th>
+                </tr>
+                <tr>
+                    <th width="50px">#</th>
+                    <th width="100px">Name</th>
+                    <th width="100px">Score</th>
+                </tr>
+                {% for key, score in scoresController|slice(0, 10) %}
+                    <tr>
+                        <td>{{ key+1 }}</td>
+                        <td>{{ score.name|slice(0,3) }}</td>
+                        <td>{{ score.score }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <table>
+                <tr>
+                    <th colspan="3">Touchscreen</th>
+                </tr>
+                <tr>
+                    <th width="50px">#</th>
+                    <th width="100px">Name</th>
+                    <th width="100px">Score</th>
+                </tr>
+                {% for key, score in scoresTouch|slice(0, 10) %}
+                    <tr>
+                        <td>{{ key+1 }}</td>
+                        <td>{{ score.name|slice(0,3) }}</td>
+                        <td>{{ score.score }}</td>
                     </tr>
                 {% endfor %}
             </table>

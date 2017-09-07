@@ -49,6 +49,27 @@ class Score
      */
     private $dateCreated;
 
+    /**
+    * @ORM\Column(name="platform", type="string")
+    */
+    private $platform;
+
+    /**
+     * @return mixed
+     */
+    public function getPlatform()
+    {
+        return $this->platform;
+    }
+
+    /**
+     * @param mixed $platform
+     */
+    public function setPlatform($platform)
+    {
+        $this->platform = $platform;
+    }
+
 
     /**
      * Get id

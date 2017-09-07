@@ -1,7 +1,8 @@
 var countingDown = false,
     countdownDone = false,
     score = 0,
-    pressing = 0;
+    pressing = 0,
+    platform = "unknown";
 
 function pad (str, max) {
     str = str.toString();
@@ -76,6 +77,7 @@ function submitScore(e){
         $("#shmupbundle_score_dateCreated_month").val(dateNow.getMonth()+1);
         $("#shmupbundle_score_dateCreated_day").val(dateNow.getDate());
         $("#shmupbundle_score_score").val(score);
+        $("#shmupbundle_score_platform").val(platform);
         $("#shmupbundle_score_name").val($("#username").find("input").val());
 
         var $form = $("form[name='shmupbundle_score']"),
@@ -132,6 +134,7 @@ $(document).ready(function(){
     });
     $(window).keyup(function(e){
         btnReleased();
+        platform = "keyboard";
         ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
@@ -139,6 +142,7 @@ $(document).ready(function(){
     $(".tap-button").click(function(e){
         btnPressed();
         btnReleased();
+        platform = "touch";
         ga('send', 'event', 'Mobile', 'Tap pressed', e);
     });
 
@@ -159,6 +163,7 @@ $(document).ready(function(){
         var gpadReleased = y.toString();
         $gamepad.on("release", gpadReleased, function(e){
             btnReleased();
+            platform = "controller";
             ga('send', 'event', 'Gamepad', 'Gamepad pressed', e);
         });
     }

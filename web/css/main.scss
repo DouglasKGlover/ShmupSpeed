@@ -414,8 +414,9 @@ footer{
     &#leaderboard{
 
       table{
-        display: block;
-        margin: 0 auto;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 20px 20px 20px;
         width: 250px;
 
         th, td{

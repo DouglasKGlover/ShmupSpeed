@@ -18,11 +18,33 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $query = $em->createQuery(
-          'select s.name, max(s.score) as score
-            from ShmupBundle:Score s
-            group by s.name
+        /*$kb = $em->createQuery(
+          'SELECT s.name, max(s.score) AS score, s.platform
+            FROM ShmupBundle:Score s
+            WHERE s.platform="keyboard"
+            GROUP BY s.name
             ORDER BY s.score DESC'
+        );*/
+
+        $kb = $em->createQuery(
+          "SELECT s 
+          FROM ShmupBundle:Score s 
+          WHERE s.platform='keyboard'
+          ORDER BY s.score"
+        );
+
+        $cn = $em->createQuery(
+          "SELECT s 
+          FROM ShmupBundle:Score s 
+          WHERE s.platform='controller'
+          ORDER BY s.score"
+        );
+
+        $to = $em->createQuery(
+          "SELECT s 
+          FROM ShmupBundle:Score s 
+          WHERE s.platform='touch'
+          ORDER BY s.score"
         );
 
         /*$query = $em->createQuery(
@@ -39,14 +61,18 @@ class DefaultController extends Controller
             order by r.highest desc, l.dateCreated'
         );*/
 
-        $scores = $query->getResult();
+        $scoresKb = $kb->getResult();
+        $scoresCn = $cn->getResult();
+        $scoresTo = $to->getResult();
 
         $score = new Score();
         $form = $this->createForm('ShmupBundle\Form\ScoreType', $score);
         $form->handleRequest($request);
 
         return $this->render('ShmupBundle::Default/index.html.twig', array(
-          'scores' => $scores,
+          'scoresKeyboard' => $scoresKb,
+          'scoresController' => $scoresCn,
+          'scoresTouch' => $scoresTo,
           'scoreForm' => $form->createView()
         ));
     }
