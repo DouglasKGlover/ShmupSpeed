@@ -25,6 +25,20 @@ class DefaultController extends Controller
             ORDER BY s.score DESC'
         );
 
+        /*$query = $em->createQuery(
+          'select l.*
+            from ShmupBundle:Score l
+            inner join (
+            select
+            name, max(score) as highest
+            from ShmupBundle:Score
+            group by name
+            ) r
+            on l.score = r.highest and l.name = r.name
+            group by name
+            order by r.highest desc, l.dateCreated'
+        );*/
+
         $scores = $query->getResult();
 
         $score = new Score();
