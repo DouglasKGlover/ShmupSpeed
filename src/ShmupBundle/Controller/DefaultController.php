@@ -30,21 +30,21 @@ class DefaultController extends Controller
           "SELECT a 
           FROM ShmupBundle:Score a 
           WHERE a.platform='keyboard'
-          ORDER BY a.score"
+          ORDER BY a.score DESC"
         );
 
         $cn = $em->createQuery(
           "SELECT b 
           FROM ShmupBundle:Score b
           WHERE b.platform='controller'
-          ORDER BY b.score"
+          ORDER BY b.score DESC"
         );
 
         $to = $em->createQuery(
           "SELECT c 
           FROM ShmupBundle:Score c 
           WHERE c.platform='touch'
-          ORDER BY c.score"
+          ORDER BY c.score DESC"
         );
 
         /*$query = $em->createQuery(

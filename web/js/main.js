@@ -2,7 +2,8 @@ var countingDown = false,
     countdownDone = false,
     score = 0,
     pressing = 0,
-    platform = "unknown";
+    platform = "unknown",
+    tmpPlatform = "unknown";
 
 function pad (str, max) {
     str = str.toString();
@@ -38,6 +39,7 @@ function countDown(){
 
         if(sec == 0 && msec == 0){
             countdownDone = true;
+            platform = tmpPlatform;
             clearInterval(msecInt);
             $("#options, #game").find("input").prop("disabled", false);
             $(".tap-button").prop("disabled", true);
@@ -134,7 +136,7 @@ $(document).ready(function(){
     });
     $(window).keyup(function(e){
         btnReleased();
-        if(countingDown){ platform = "keyboard"; }
+        tmpPlatform = "keyboard";
         ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
@@ -142,7 +144,7 @@ $(document).ready(function(){
     $(".tap-button").click(function(e){
         btnPressed();
         btnReleased();
-        platform = "touch";
+        tmpPlatform = "touch";
         ga('send', 'event', 'Mobile', 'Tap pressed', e);
     });
 
@@ -163,7 +165,7 @@ $(document).ready(function(){
         var gpadReleased = y.toString();
         $gamepad.on("release", gpadReleased, function(e){
             btnReleased();
-            platform = "controller";
+            tmpPlatform = "controller";
             ga('send', 'event', 'Gamepad', 'Gamepad pressed', e);
         });
     }
