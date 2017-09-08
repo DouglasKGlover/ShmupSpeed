@@ -13,6 +13,8 @@ function pad (str, max) {
 function countDown(){
     var sec = 10,
         msec = 100;
+    score = 0;
+    pressing = 0;
 
     countingDown = true;
 
@@ -106,24 +108,23 @@ ga('send', 'pageview');
 
 /* Interactions */
 $(document).ready(function(){
-
     /* Gameplay */
     // Detect button pressed
     function btnPressed(){
-        if($("#game").hasClass("active")){
-            pressing++;
-        }
+        pressing++;
+        console.log(pressing);
     }
     // Detect button released
     function btnReleased(){
-        if($("#game").hasClass("active")) {
-            pressing--;
+        pressing--;
+        console.log(pressing);
 
+        if($("#game").hasClass("active")) {
             if (!countingDown) {
                 countDown();
             }
 
-            if (!countdownDone && pressing < 1) {
+            if (!countdownDone && pressing === 0) {
                 score++;
                 updateScore();
             }
