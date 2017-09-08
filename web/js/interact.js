@@ -112,12 +112,10 @@ $(document).ready(function(){
     // Detect button pressed
     function btnPressed(){
         pressing++;
-        console.log(pressing);
     }
     // Detect button released
     function btnReleased(){
         pressing--;
-        console.log(pressing);
 
         if($("#game").hasClass("active")) {
             if (!countingDown) {
