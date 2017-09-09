@@ -210,4 +210,9 @@ $(document).ready(function(){
     $("#cartridge").click(function(){
         ga('send', 'event', 'Cartridge', 'NES ROM downloaded');
     });
+
+    // Extra Analytics
+    $("#extra-life").click(function(){
+        ga('send', 'pageview', '/Extra Life');
+    });
 });
