@@ -302,10 +302,15 @@ footer{
     width: 100%;
     transition: opacity 1s ease, transform 1s ease;
 
+    &.active{
+      z-index: 3;
+    }
+
     &:not(.active){
       transform: translateY(100%);
       opacity: 0;
       height: 0;
+      z-index: -1;
     }
 
 
@@ -327,7 +332,6 @@ footer{
       margin: 0 auto;
       position: relative;
       text-align: left;
-      z-index: 3;
 
       a{
         color: $blue;
