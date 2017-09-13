@@ -44,7 +44,10 @@ function countDown(){
             platform = tmpPlatform;
             clearInterval(msecInt);
             $("#options, #game").find("input").prop("disabled", false);
-            $(".tap-button").prop("disabled", true);
+            $(".tap-button").fadeOut(500).prop("disabled", true);
+            $("#share").fadeIn(500);
+            $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
+            $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20www.ShmupSpeed.com!%20Finger%20dexterity%20game%20on%20point!");
         }
     },10);
 }
@@ -60,7 +63,8 @@ function reset(){
     $("#score").text("000");
 
     $(".reset, .submit, #username input").prop("disabled", true);
-    $(".tap-button").prop("disabled", false);
+    $("#share").fadeOut(500);
+    $(".tap-button").fadeIn(500).prop("disabled", false);
 }
 
 function submitScore(e){
@@ -209,6 +213,14 @@ $(document).ready(function(){
     // Cartridge clicked
     $("#cartridge").click(function(){
         ga('send', 'event', 'Cartridge', 'NES ROM downloaded');
+    });
+
+    // Social Shares
+    $("#share-fb, #share-tw").click(function(e){
+        e.preventDefault();
+
+        var url = $(this).attr("href");
+        window.open(url, "Share your score", "width=400,height=400,scrollbars=yes");
     });
 
     // Extra Analytics

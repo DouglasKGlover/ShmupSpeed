@@ -353,12 +353,31 @@ footer{
         @include turnOn(1s, 4.5s);
       }
 
+      #share{
+        display: none;
+
+        a{
+          text-decoration: none;
+
+          img{
+            opacity: 0.7;
+            transition: opacity .2s ease, transform .2s ease;
+
+            &:hover{
+              opacity: 1;
+              transform: scale(1.1);
+            }
+          }
+        }
+      }
+
       #username input[type=text]{
         background: transparent;
         text-align: center;
         border: 0;
         color: white;
         font-size: 2em;
+        margin-top: 20px;
 
         &:disabled{
           opacity: 0;

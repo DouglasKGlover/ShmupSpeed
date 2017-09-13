@@ -109,4 +109,15 @@ class DefaultController extends Controller
             ));
         }
     }
+
+    /**
+     * @Route("/score/{index}", name="share")
+     * @Method("GET")
+     */
+    public function shareAction(Request $request)
+    {
+        return $this->render('ShmupBundle::Share/share.html.twig', array(
+            'index' => $request->attributes->get('index')
+        ));
+    }
 }
