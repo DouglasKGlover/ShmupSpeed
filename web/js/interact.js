@@ -140,7 +140,7 @@ $(document).ready(function(){
     $(window).keyup(function(e){
         btnReleased();
         tmpPlatform = "keyboard";
-        ga('send', 'event', 'Keyboard', 'Button pressed', e);
+        // ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
     // Tap (mobile)
@@ -148,13 +148,13 @@ $(document).ready(function(){
         btnPressed();
         btnReleased();
         tmpPlatform = "touch";
-        ga('send', 'event', 'Mobile', 'Tap pressed', e);
+        // ga('send', 'event', 'Mobile', 'Tap pressed', e);
     });
 
     // Gamepad Controller
     var $gamepad = new Gamepad();
     $gamepad.on("connect", function(e){
-        ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
+        // ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
     });
 
     for(var x in $gamepad._keyMapping.gamepad){
@@ -169,7 +169,7 @@ $(document).ready(function(){
         $gamepad.on("release", gpadReleased, function(e){
             btnReleased();
             tmpPlatform = "controller";
-            ga('send', 'event', 'Gamepad', 'Gamepad pressed', e);
+            // ga('send', 'event', 'Gamepad', 'Gamepad pressed', e);
         });
     }
 
@@ -226,5 +226,11 @@ $(document).ready(function(){
     // Extra Analytics
     $("#extra-life").click(function(){
         ga('send', 'pageview', '/Extra Life');
+    });
+    $("#share-fb").click(function(){
+        ga('send', 'event', 'Share', "Facebook Share", "Shared score: " + score);
+    });
+    $("#share-tw").click(function(){
+        ga('send', 'event', 'Share', "Twitter Share", "Shared score: " + score);
     });
 });
