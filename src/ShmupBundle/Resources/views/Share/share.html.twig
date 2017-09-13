@@ -20,7 +20,7 @@
   {% if index > 200 %}
   <meta property="og:description" content="Ok this is getting ridiculous. My score is high enough that either the dev has screwed up, or I'm cheating! If you think you can do better (is this even possible?) then click here to try!" />
   {% endif %}
-  <meta property="og:image" content="{{ asset('img/og_image.jpg') }}" />
+  <meta property="og:image" content="{{ absolute_url(asset('img/og_image.jpg')) }}" />
 
   <meta http-equiv="refresh" content="0;URL='/'" />
 </head>
