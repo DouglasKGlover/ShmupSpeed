@@ -18,57 +18,38 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        /*$kb = $em->createQuery(
-          'SELECT s.name, max(s.score) AS score, s.platform
-            FROM ShmupBundle:Score s
-            WHERE s.platform="keyboard"
-            GROUP BY s.name
-            ORDER BY s.score DESC'
-        );*/
-
-        /*$kb = $em->createQuery(
-          "SELECT a 
-          FROM ShmupBundle:Score a
-          INNER JOIN ShmupBundle:Score b WITH a.score = b.score AND a.name = b.name
-          WHERE a.platform='keyboard'
-          GROUP BY a.name
-          ORDER BY b.score DESC, a.dateCreated DESC"
-        );*/
-
         $kb = $em->createQuery(
-          "SELECT a
-          FROM ShmupBundle:Score a
-          WHERE a.platform='keyboard'
-          ORDER BY a.score DESC, a.dateCreated DESC"
+          "SELECT a 
+            FROM ShmupBundle:Score a
+                LEFT JOIN ShmupBundle:Score b 
+                WITH a.name = b.name 
+                AND a.score < b.score
+            WHERE b.score IS NULL
+            AND a.platform = 'keyboard'
+            ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
         $cn = $em->createQuery(
-          "SELECT b 
-          FROM ShmupBundle:Score b
-          WHERE b.platform='controller'
-          ORDER BY b.score DESC, b.dateCreated DESC"
+          "SELECT a 
+            FROM ShmupBundle:Score a
+                LEFT JOIN ShmupBundle:Score b 
+                WITH a.name = b.name 
+                AND a.score < b.score
+            WHERE b.score IS NULL
+            AND a.platform = 'controller'
+            ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
         $to = $em->createQuery(
-          "SELECT c 
-          FROM ShmupBundle:Score c 
-          WHERE c.platform='touch'
-          ORDER BY c.score DESC, c.dateCreated DESC"
+          "SELECT a 
+            FROM ShmupBundle:Score a
+                LEFT JOIN ShmupBundle:Score b 
+                WITH a.name = b.name 
+                AND a.score < b.score
+            WHERE b.score IS NULL
+            AND a.platform = 'touch'
+            ORDER BY a.score DESC, a.dateCreated ASC"
         );
-
-        /*$query = $em->createQuery(
-          'select l.*
-            from ShmupBundle:Score l
-            inner join (
-            select
-            name, max(score) as highest
-            from ShmupBundle:Score
-            group by name
-            ) r
-            on l.score = r.highest and l.name = r.name
-            group by name
-            order by r.highest desc, l.dateCreated'
-        );*/
 
         $scoresKb = $kb->getResult();
         $scoresCn = $cn->getResult();
