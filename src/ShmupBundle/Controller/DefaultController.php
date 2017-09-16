@@ -22,7 +22,8 @@ class DefaultController extends Controller
           "SELECT a 
             FROM ShmupBundle:Score a
                 LEFT JOIN ShmupBundle:Score b 
-                WITH a.name = b.name 
+                WITH a.platform = b.platform 
+                AND a.name = b.name
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'keyboard'
@@ -33,7 +34,8 @@ class DefaultController extends Controller
           "SELECT a 
             FROM ShmupBundle:Score a
                 LEFT JOIN ShmupBundle:Score b 
-                WITH a.name = b.name 
+                WITH a.platform = b.platform 
+                AND a.name = b.name
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'controller'
@@ -44,7 +46,8 @@ class DefaultController extends Controller
           "SELECT a 
             FROM ShmupBundle:Score a
                 LEFT JOIN ShmupBundle:Score b 
-                WITH a.name = b.name 
+                WITH a.platform = b.platform 
+                AND a.name = b.name
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'touch'
