@@ -437,6 +437,10 @@ footer{
     /* Leaderboard */
     &#leaderboard{
 
+      #daily-highscore{
+        text-transform: uppercase;
+      }
+
       table{
         display: inline-block;
         vertical-align: top;

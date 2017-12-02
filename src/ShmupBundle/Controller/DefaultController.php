@@ -54,9 +54,17 @@ class DefaultController extends Controller
             ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
+        $today = $em->createQuery(
+          "SELECT a 
+            FROM ShmupBundle:Score a
+            WHERE a.dateCreated = CURRENT_DATE()
+            ORDER BY a.score DESC"
+        );
+
         $scoresKb = $kb->getResult();
         $scoresCn = $cn->getResult();
         $scoresTo = $to->getResult();
+        $scoresToday = $today->getResult();
 
         $score = new Score();
         $form = $this->createForm('ShmupBundle\Form\ScoreType', $score);
@@ -66,6 +74,7 @@ class DefaultController extends Controller
           'scoresKeyboard' => $scoresKb,
           'scoresController' => $scoresCn,
           'scoresTouch' => $scoresTo,
+          'scoresToday' => $scoresToday,
           'scoreForm' => $form->createView()
         ));
     }

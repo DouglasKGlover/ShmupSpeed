@@ -19,18 +19,26 @@ function countDown(){
     countingDown = true;
 
     $("#options").find("input").prop("disabled", true);
-    $(".sec").text("09");
+    // $(".sec").text("09");
 
     var secInt = setInterval(function(){
-        if(sec != 0){
+        if(sec != 1){
             sec--;
             $(".sec").text(pad(sec,2));
         } else {
+            $(".sec").text("00");
             clearInterval(secInt);
+            countdownDone = true;
+            platform = tmpPlatform;
+            $("#options, #game").find("input").prop("disabled", false);
+            $(".tap-button").fadeOut(500).prop("disabled", true);
+            $("#share").fadeIn(500);
+            $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
+            $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
         }
     },1000);
 
-    var msecInt = setInterval(function(){
+    /*var msecInt = setInterval(function(){
         if(msec != 0){
             msec--;
             $(".msec").text(pad(msec,2));
@@ -49,7 +57,7 @@ function countDown(){
             $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
             $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
         }
-    },10);
+    },10);*/
 }
 
 function reset(){
