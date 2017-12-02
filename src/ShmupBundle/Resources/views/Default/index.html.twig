@@ -75,14 +75,14 @@
 
         {# Leaderboard #}
         <section id="leaderboard" class="digital">
-            <div id="daily-highscore">
+            {#<div id="daily-highscore">
                 <p>
                     Today's High Score:
                     {% for keyD, scoreD in scoresToday|slice(0, 1) %}
                         {{ scoreD.name|slice(0,3) }} - {{ scoreD.score }}
                     {% endfor %}
                 </p>
-            </div>
+            </div>#}
             <table>
                 <tr>
                     <th colspan="3">Keyboard</th>
