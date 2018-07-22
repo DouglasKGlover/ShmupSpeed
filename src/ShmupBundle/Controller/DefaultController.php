@@ -27,6 +27,7 @@ class DefaultController extends Controller
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'keyboard'
+            AND a.score < 1000
             ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
@@ -39,6 +40,7 @@ class DefaultController extends Controller
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'controller'
+            AND a.score < 1000
             ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
@@ -51,6 +53,7 @@ class DefaultController extends Controller
                 AND a.score < b.score
             WHERE b.score IS NULL
             AND a.platform = 'touch'
+            AND a.score < 1000
             ORDER BY a.score DESC, a.dateCreated ASC"
         );
 
@@ -58,6 +61,7 @@ class DefaultController extends Controller
           "SELECT a 
             FROM ShmupBundle:Score a
             WHERE a.dateCreated = CURRENT_DATE()
+            AND a.score < 1000
             ORDER BY a.score DESC"
         );
 

@@ -78,7 +78,7 @@
             <div id="daily-highscore">
                 <p>
                     Today's High Score:
-                    {% for keyD, scoreD in scoresToday|slice(0, 1) if scoreD.score < 1000 %}
+                    {% for keyD, scoreD in scoresToday|slice(0, 1) %}
                         {{ scoreD.name|slice(0,3) }} - {{ scoreD.score }}
                     {% endfor %}
                 </p>
@@ -92,7 +92,7 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for keyK, scoreK in scoresKeyboard|slice(0, 10) if scoreK.score < 1000 %}
+                {% for keyK, scoreK in scoresKeyboard|slice(0, 10) %}
                     <tr>
                         <td>{{ keyK+1 }}</td>
                         <td>{{ scoreK.name|slice(0,3) }}</td>
@@ -109,7 +109,7 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for keyT, scoreC in scoresController|slice(0, 10) if scoreC.score < 1000 %}
+                {% for keyT, scoreC in scoresController|slice(0, 10) %}
                     <tr>
                         <td>{{ keyT+1 }}</td>
                         <td>{{ scoreC.name|slice(0,3) }}</td>
@@ -126,7 +126,7 @@
                     <th width="100px">Name</th>
                     <th width="100px">Score</th>
                 </tr>
-                {% for keyT, scoreT in scoresTouch|slice(0, 10) if scoreT.score < 1000 %}
+                {% for keyT, scoreT in scoresTouch|slice(0, 10) %}
                     <tr>
                         <td>{{ keyT+1 }}</td>
                         <td>{{ scoreT.name|slice(0,3) }}</td>
