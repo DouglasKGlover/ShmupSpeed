@@ -29,8 +29,9 @@ function countDown(){
         countdownDone = true;
         platform = tmpPlatform;
         $("#options, #game").find("input").prop("disabled", false);
-        $(".tap-button").fadeOut(500).prop("disabled", true);
-        $("#share").fadeIn(500);
+        $(".tap-button").hide().prop("disabled", true);
+        $("#ship").hide();
+        $("#share").show();
         $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
         $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
     },10000);
@@ -44,14 +45,15 @@ function reset(){
 
     $("#timer").text("10.00");
     $(".reset, .submit, #username input").prop("disabled", true);
-    $("#share").fadeOut(500);
-    $(".tap-button").fadeIn(500).prop("disabled", false);
+    $("#share").hide();
+    $(".tap-button").show().prop("disabled", false);
+    $("#ship").show();
 }
 
 function submitScore(e){
     e.preventDefault();
 
-    if($("#username").find("input").val() == ""){
+    if($("#username").find("input").val() === ""){
         $("#errors").show();
 
         setTimeout(function(){
@@ -110,6 +112,14 @@ $(document).ready(function(){
         }
     },2000);
 
+    // Ship
+    setTimeout(function(){
+        TweenMax.fromTo($("#ship"), 3, {y: "150%", x: "-15%"}, { ease: Power1.easeOut, y: "0%", x: "-15%", opacity: 1, onComplete: shipLoop});
+        function shipLoop(){
+            TweenMax.fromTo($("#ship"), 2, {x: "-15%"}, { ease: Power1.easeInOut, x: "15%", yoyo: true, repeat: -1});
+        }
+    },2000);
+
     // Turn on
     function turnOn(element, speed, delay){
         setTimeout(function(){
@@ -140,6 +150,14 @@ $(document).ready(function(){
             if (!countdownDone && pressing === 0){
                 score++;
                 updateScore();
+
+                var bullet = "#bullet-" + score;
+
+                $("#ship").append("<div class='bullet' id='bullet-"+ score +"'></div>");
+                TweenMax.to($(bullet), 1, { ease: Power1.easeOut, y: "-30vh", opacity: 0 });
+                setTimeout(function(){
+                    $(bullet).remove();
+                },1200)
             }
         }
     }

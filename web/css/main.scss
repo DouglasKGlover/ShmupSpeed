@@ -462,6 +462,44 @@ footer{
   }
 }
 
+/* Ship */
+#ship{
+  position: fixed;
+  bottom: 50px;
+  left: 50px;
+  width: 5vw;
+  opacity: 0;
+
+  img{
+    width: 100%;
+  }
+
+  .bullet{
+    background: white;
+    position: absolute;
+    top: 40%;
+    left: 11%;
+    width: 6%;
+    height: 6%;
+
+    &:after{
+      content: "";
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 1200%;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @include breakpoint(medium){
+    width: 20vw;
+    left: 40vw;
+    bottom: 5vh;
+  }
+}
+
 
 // Hide the score form
 #score-form-hidden{
