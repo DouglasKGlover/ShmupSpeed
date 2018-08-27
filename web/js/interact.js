@@ -120,7 +120,7 @@ $(document).ready(function(){
     turnOn($("#options"), 1, 3.5);
     turnOn($("#timer"), 1, 4);
     turnOn($("#score"), 1, 4.5);
-    turnOn($("#top"), 1, 5);
+    turnOn($("#tap"), 1, 5);
 
 
     /* Gameplay */
