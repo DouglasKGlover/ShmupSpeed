@@ -5,71 +5,44 @@ var countingDown = false,
     platform = "unknown",
     tmpPlatform = "unknown";
 
-function pad (str, max) {
+function pad(str, max){
     str = str.toString();
     return str.length < max ? pad("0" + str, max) : str;
 }
 
+// Timer
+var timer = {time: 10},
+    scoreDisplay = document.getElementById("timer");
+function updateTime() {
+    scoreDisplay.innerHTML = "0" + timer.time.toFixed(2);
+}
+function startTimer(){
+    var timerTween = TweenLite.to(timer, 10, {ease: Power0.easeNone, time: 0, onUpdate: updateTime});
+}
 function countDown(){
-    var sec = 10,
-        msec = 100;
-    score = 0;
-    pressing = 0;
-
     countingDown = true;
 
     $("#options").find("input").prop("disabled", true);
-    // $(".sec").text("09");
+    startTimer();
 
-    var secInt = setInterval(function(){
-        if(sec != 1){
-            sec--;
-            $(".sec").text(pad(sec,2));
-        } else {
-            $(".sec").text("00");
-            clearInterval(secInt);
-            countdownDone = true;
-            platform = tmpPlatform;
-            $("#options, #game").find("input").prop("disabled", false);
-            $(".tap-button").fadeOut(500).prop("disabled", true);
-            $("#share").fadeIn(500);
-            $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
-            $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
-        }
-    },1000);
-
-    /*var msecInt = setInterval(function(){
-        if(msec != 0){
-            msec--;
-            $(".msec").text(pad(msec,2));
-        } else {
-            msec = 99;
-            $(".msec").text(pad(msec,2));
-        }
-
-        if(sec == 0 && msec == 0){
-            countdownDone = true;
-            platform = tmpPlatform;
-            clearInterval(msecInt);
-            $("#options, #game").find("input").prop("disabled", false);
-            $(".tap-button").fadeOut(500).prop("disabled", true);
-            $("#share").fadeIn(500);
-            $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
-            $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
-        }
-    },10);*/
+    setTimeout(function(){
+        countdownDone = true;
+        platform = tmpPlatform;
+        $("#options, #game").find("input").prop("disabled", false);
+        $(".tap-button").fadeOut(500).prop("disabled", true);
+        $("#share").fadeIn(500);
+        $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
+        $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
+    },10000);
 }
 
 function reset(){
     countingDown = false;
     countdownDone = false;
     score = 0;
+    timer = {time: 10};
 
-    $(".sec").text("10");
-    $(".msec").text("00");
-    $(".counter").text("000");
-    $("#score").text("000");
-
+    $("#timer").text("10.00");
     $(".reset, .submit, #username input").prop("disabled", true);
     $("#share").fadeOut(500);
     $(".tap-button").fadeIn(500).prop("disabled", false);
@@ -84,7 +57,7 @@ function submitScore(e){
         setTimeout(function(){
             $("#errors").hide();
         },3000);
-    } else {
+    } else{
         var dateNow = new Date();
 
         $(".submit").prop("disabled", "true");
@@ -120,6 +93,36 @@ ga('send', 'pageview');
 
 /* Interactions */
 $(document).ready(function(){
+    /* Greensock (GSAP) animations */
+    // Stars
+    TweenMax.to($("#stars-1"), 50, { ease: Power0.easeNone, y: "-50vh", repeat: -1 });
+    TweenMax.to($("#stars-2"), 100, { ease: Power0.easeNone, y: "-50vh", repeat: -1 });
+    TweenMax.to($("#stars-3"), 150, { ease: Power0.easeNone, y: "-50vh", repeat: -1 });
+
+    // Logo
+    TweenMax.fromTo($("#logo"), 4, { yPercent: -125, opacity: 0 }, { ease: Power2.easeOut, yPercent: 0, opacity: 1 });
+
+    // Cartridge
+    setTimeout(function(){
+        TweenMax.fromTo($("#cartridge"), 3, {y: "150%"}, { ease: Power1.easeOut, y: "0%", opacity: 1, onComplete: cartridgeLoop});
+        function cartridgeLoop(){
+            TweenMax.fromTo($("#cartridge"), 2, {y: "0%"}, { ease: Power1.easeInOut, y: "-30%", yoyo: true, repeat: -1});
+        }
+    },2000);
+
+    // Turn on
+    function turnOn(element, speed, delay){
+        setTimeout(function(){
+            TweenMax.fromTo(element, speed, { opacity: 0 }, { ease: Power1.easeInOut, opacity: 1 });
+        },delay*1000);
+    }
+    turnOn($("body"), 4, 0);
+    turnOn($("#options"), 1, 3.5);
+    turnOn($("#timer"), 1, 4);
+    turnOn($("#score"), 1, 4.5);
+    turnOn($("#top"), 1, 5);
+
+
     /* Gameplay */
     // Detect button pressed
     function btnPressed(){
@@ -129,12 +132,12 @@ $(document).ready(function(){
     function btnReleased(){
         pressing--;
 
-        if($("#game").hasClass("active")) {
-            if (!countingDown) {
+        if($("#game").hasClass("active")){
+            if (!countingDown){
                 countDown();
             }
 
-            if (!countdownDone && pressing === 0) {
+            if (!countdownDone && pressing === 0){
                 score++;
                 updateScore();
             }
@@ -148,7 +151,6 @@ $(document).ready(function(){
     $(window).keyup(function(e){
         btnReleased();
         tmpPlatform = "keyboard";
-        // ga('send', 'event', 'Keyboard', 'Button pressed', e);
     });
 
     // Tap (mobile)
@@ -156,13 +158,12 @@ $(document).ready(function(){
         btnPressed();
         btnReleased();
         tmpPlatform = "touch";
-        // ga('send', 'event', 'Mobile', 'Tap pressed', e);
     });
 
     // Gamepad Controller
     var $gamepad = new Gamepad();
     $gamepad.on("connect", function(e){
-        // ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
+        ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
     });
 
     for(var x in $gamepad._keyMapping.gamepad){
@@ -196,7 +197,7 @@ $(document).ready(function(){
     });
 
     // Footer copyright year
-    $("#this-year").text(new Date().getYear() + 1900);
+    $("#this-year").text("2017 - " + (new Date().getYear() + 1900));
 
     // Section swap
     var swapping = false;

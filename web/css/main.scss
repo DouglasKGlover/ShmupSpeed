@@ -16,7 +16,8 @@
   height: $starSize;
   background: transparent;
   box-shadow: multiple-box-shadow($totalStars);
-  animation: animateStars $animateSpeed linear infinite;
+  transform: translateY(-400vh);
+  //animation: animateStars $animateSpeed linear infinite;
 
   &:after {
     content: " ";
@@ -54,18 +55,18 @@ $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
 
 
 /* Animations */
-@keyframes animateStars{
+/*@keyframes animateStars{
   from { transform: translateY(-400vh) }
   to { transform: translateY(-50vh) }
-}
+}*/
 
-@keyframes verticalFloat{
+/*@keyframes verticalFloat{
   0% {bottom: 5%;}
   50% {bottom: 10%;}
   100% {bottom: 5%;}
-}
+}*/
 
-@keyframes floatUp{
+/*@keyframes floatUp{
   from {
     transform: translateY(115%);
     opacity: 0;
@@ -74,9 +75,9 @@ $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
     transform: translateY(0);
     opacity: 1;
   }
-}
+}*/
 
-@keyframes floatDown{
+/*@keyframes floatDown{
   from {
     transform: translateY(-125%);
     opacity: 0;
@@ -85,12 +86,12 @@ $ease-in-quint: cubic-bezier(0.755, 0.050, 0.855, 0.060);
     transform: translateY(0);
     opacity: 1;
   }
-}
+}*/
 
-@keyframes turnOn{
+/*@keyframes turnOn{
   from { opacity:0; }
   to { opacity:1; }
-}
+}*/
 
 @keyframes flash{
   0% { opacity:0; }
@@ -136,7 +137,7 @@ html, body{
 
 body{
   opacity: 0;
-  @include turnOn(4s, 0);
+  //@include turnOn(4s, 0);
 }
 
 section{
@@ -190,7 +191,8 @@ header{
     margin: 0 auto;
     max-width: 90vw;
     max-height: 35vh;
-    animation: floatDown 4s ease;
+    opacity: 0;
+    //animation: floatDown 4s ease;
   }
 }
 
@@ -219,11 +221,11 @@ footer{
   cursor: pointer;
   opacity: 0;
   z-index: 3;
-  animation: verticalFloat 3s ease infinite, floatUp 3s ease forwards;
-  animation-delay: 5s, 2.5s;
+  //animation: verticalFloat 3s ease infinite, floatUp 3s ease forwards;
+  //animation-delay: 5s, 2.5s;
 
   &:hover{
-    animation-play-state: paused;
+    //animation-play-state: paused;
 
     &:after{
       content: "Want to play on real hardware? Click to download the NES ROM developed by KHAN Games!";
@@ -256,7 +258,8 @@ footer{
   font-size: 1.5em;
   color: $pink;
   cursor: default;
-  @include turnOn(1s, 3.5s);
+  opacity: 0;
+  //@include turnOn(1s, 3.5s);
 
   input[type=button]{
     text-transform: uppercase;
@@ -345,12 +348,14 @@ footer{
 
       #timer{
         font-size: 7vw;
-        @include turnOn(1s, 4s);
+        opacity: 0;
+        //@include turnOn(1s, 4s);
       }
 
       #score{
         font-size: 6vw;
-        @include turnOn(1s, 4.5s);
+        opacity: 0;
+        //@include turnOn(1s, 4.5s);
       }
 
       #share{
@@ -408,7 +413,8 @@ footer{
 
         #tap{
           width: 100%;
-          @include turnOn(1s, 5s);
+          opacity: 0;
+          //@include turnOn(1s, 5s);
 
           .tap-button{
             position: absolute;

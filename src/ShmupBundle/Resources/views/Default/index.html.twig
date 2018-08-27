@@ -9,7 +9,7 @@
 
     {# Background animation (Stars) #}
 		{% for i in 1..3 %}
-        <div id="stars-{{ i }}"></div>
+        <div id="stars-{{ i }}" class="stars"></div>
     {% endfor %}
 
     {# Hidden form for submitting score #}
@@ -38,9 +38,10 @@
         {# Current session info #}
         <section id="game" class="active">
             {# Timer #}
-            <div id="timer" class="digital">
-                <span class="sec">10</span>:<span class="msec">00</span>
-            </div>
+            {#<div id="timer" class="digital">#}
+                {#<span class="sec">10</span>:<span class="msec">00</span>#}
+            {#</div>#}
+            <div id="timer" class="digital">00.00</div>
 
             {# User's Score #}
             <div id="score" class="digital">000</div>
