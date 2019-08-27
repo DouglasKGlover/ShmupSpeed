@@ -442,6 +442,11 @@ footer{
 
     /* Leaderboard */
     &#leaderboard{
+      width: 1024px;
+      max-width: 95%;
+      margin: 0 auto;
+      position: relative;
+      text-align: left;
 
       #daily-highscore{
         text-transform: uppercase;

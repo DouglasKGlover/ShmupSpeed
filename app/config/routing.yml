@@ -1,4 +1,0 @@
-shmup:
-    resource: "@ShmupBundle/Controller/"
-    type:     annotation
-    prefix:   /

@@ -31,9 +31,7 @@ function countDown(){
         $("#options, #game").find("input").prop("disabled", false);
         $(".tap-button").hide().prop("disabled", true);
         $("#ship").hide();
-        $("#share").show();
-        $("#share").find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score);
-        $("#share").find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
+        $("#share").show().find("#share-fb").attr("href", "https://www.facebook.com/sharer/sharer.php?u=http%3A//shmupspeed.com/score/" + score).find("#share-tw").attr("href", "https://twitter.com/intent/tweet?url=www.shmupspeed.com&text=I%20just%20scored%20"+ score +"%20on%20#ShmupSpeed!%20Finger%20dexterity%20game%20on%20point!");
     },10000);
 }
 
