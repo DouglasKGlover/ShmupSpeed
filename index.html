@@ -1,103 +1,159 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <meta name="description" content="How quick can you click? Test your button mashing mettle at ShmupSpeed.com!">
-  <meta name="keywords" content="Shmup, Shoot em up, Shoot-em-up, Speed, Test, Shooting Watch, Shmup Watch, Watch, Timer, Click Speed">
-  <meta name="author" content="Douglas Glover">
-  <meta property="og:title" content="ShmupSpeed.com" />
-  <meta property="og:url" content="http://www.ShmupSpeed.com" />
-  <meta property="og:type" content="game" />
-  <meta property="og:description" content="How quick can you click? Test your button mashing mettle at ShmupSpeed.com!" />
-  <meta property="og:image" content="img/og_image.jpg" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta
+      name="description"
+      content="How quick can you click? Test your button mashing mettle at ShmupSpeed.com!"
+    />
+    <meta
+      name="keywords"
+      content="Shmup, Shoot em up, Shoot-em-up, Speed, Test, Shooting Watch, Shmup Watch, Watch, Timer, Click Speed"
+    />
+    <meta name="author" content="Douglas Glover" />
+    <meta property="og:title" content="ShmupSpeed.com" />
+    <meta property="og:url" content="http://www.ShmupSpeed.com" />
+    <meta property="og:type" content="game" />
+    <meta
+      property="og:description"
+      content="How quick can you click? Test your button mashing mettle at ShmupSpeed.com!"
+    />
+    <meta property="og:image" content="img/og_image.jpg" />
 
-  <title>ShmupSpeed</title>
-  <link rel="icon" type="image/x-icon" href="img/shmup.ico" />
-  <link rel="stylesheet" href="./css/main.css?v=13">
-</head>
-<body>
-  <!-- Header -->
-  <header>
-    <h1><img src="img/logo.png" alt="Shmup Speed" id="logo"></h1>
-  </header>
+    <title>ShmupSpeed</title>
+    <link rel="icon" type="image/x-icon" href="img/shmup.ico" />
+    <link rel="stylesheet" href="./css/main.css?v=13" />
+  </head>
+  <body>
+    <!-- Header -->
+    <header>
+      <h1><img src="img/logo.png" alt="Shmup Speed" id="logo" /></h1>
+    </header>
 
-  <!-- Stars -->
-  <div id="stars-1" class="stars"></div>
-  <div id="stars-2" class="stars"></div>
-  <div id="stars-3" class="stars"></div>
+    <!-- Stars -->
+    <div id="stars-1" class="stars"></div>
+    <div id="stars-2" class="stars"></div>
+    <div id="stars-3" class="stars"></div>
 
-  <!-- Navigation -->
-  <nav id="options">
+    <!-- Navigation -->
+    <nav id="options">
       <input type="button" class="view-about" value="About" /> /
       <input type="button" class="view-support" value="Support" /> /
       <input type="button" class="view-leaderboard" value="Leaderboard" /> /
       <input type="button" class="view-game active" value="Game" /> /
       <input type="button" class="reset" value="Reset" disabled />
       <!-- <input type="button" class="submit" value="Submit Score" disabled /> -->
-  </nav>
+    </nav>
 
-  <div class="wrapper">
-    <!-- Ship -->
-    <div id="ship">
-      <img src="img/ship.png" alt="Spaceship">
+    <div class="wrapper">
+      <!-- Ship -->
+      <div id="ship">
+        <img src="img/ship.png" alt="Spaceship" />
+      </div>
+
+      <!-- The game UI -->
+      <section id="game" class="active">
+        <!-- Timer -->
+        <div id="timer" class="digital">00.00</div>
+
+        <!-- User's score -->
+        <div id="score" class="digital">000</div>
+
+        <!-- Tap buttons for mobile -->
+        <div id="tap" class="mobile">
+          <input type="button" value="A" class="tap-button" />
+          <input type="button" value="B" class="tap-button" />
+        </div>
+      </section>
+
+      <!-- Leaderboard -->
+      <section id="leaderboard">
+        <h3 class="digital">Leaderboard is currently under maintenance!</h3>
+        <p>
+          I'm moving ShmupSpeed to a new framework and in the meantime I've
+          taken down the leaderboard and sharing functionality. Neither was very
+          popular, analytics show that neither get much use at all and people
+          mostly come to the site to try their hand at the "game" a few times
+          then&nbsp;leave.
+        </p>
+        <p>
+          I do plan to put up a new leaderboard eventually but I'm hoping I can
+          do so in such a way that will make it a bit harder to hack and fill
+          with 999&nbsp;scores!
+        </p>
+      </section>
+
+      <!-- About -->
+      <section id="about">
+        <p>
+          ShmupSpeed.com aims to provide a fun and accurate method of tracking
+          your "Presses Per Second" (PPS). Shoot-em-up game fans work hard to
+          press buttons super fast to kill alien scum and the like, and this
+          site is here to help you practice and gauge your skills.
+        </p>
+        <p>
+          Here on the site you can use your <strong>Keyboard</strong>, or any
+          <strong>Gamepad controller</strong> connected to your PC to test your
+          button mashing mettle. While on the GAME page just start pressing and
+          the timer will start, and your score will go up! Divide by ten and
+          you've got your PPS!
+        </p>
+        <p class="mobile">
+          On your phone you can
+          <strong>tap on the A & B buttons</strong> provided to test your skills
+          on the go!
+        </p>
+        <p>
+          The inspiration for this site was the Hudson Shooting Watches from
+          Japan, which have not been available for sale since around 2008, shown
+          below, and follows the same logic for calculating PPS:
+        </p>
+        <img src="img/hudson.png" alt="Hudson Shooting Watch" />
+      </section>
+
+      <!-- Support -->
+      <section id="support">
+        <p>
+          I'm running this site totally out of pocket, and I am ok with that. If
+          you like the site and want to show your support, the best way to do so
+          would be to donate to charity!
+        </p>
+        <p>
+          Every year I participate in <strong>Extra Life</strong>, raising funds
+          for Sick Kids Hospital, supporting the kids who need it most.
+        </p>
+        <p>
+          If you've got a few bucks to spare, you can visit my donor link
+          here:<br /><br />
+          <strong
+            ><a
+              href="https://www.extra-life.org/participant/DouglasGlover"
+              target="_blank"
+              id="extra-life"
+              >Douglas Glover @ Extra Life</a
+            ></strong
+          >
+        </p>
+      </section>
     </div>
 
-    <!-- The game UI -->
-    <section id="game" class="active">
-      <!-- Timer -->
-      <div id="timer" class="digital">00.00</div>
-
-      <!-- User's score -->
-      <div id="score" class="digital">000</div>
-
-      <!-- Tap buttons for mobile -->
-      <div id="tap" class="mobile">
-          <input type="button" value="A" class="tap-button">
-          <input type="button" value="B" class="tap-button">
-      </div>
+    <!-- Rom download (floating cartridge) -->
+    <section id="cartridge" class="desktop">
+      <a href="rom/shmupspeed.nes">
+        <img src="img/cartridge.png" alt="Shmup Speed NES Cartridge" />
+      </a>
     </section>
 
-    <!-- Leaderboard -->
-    <section id="leaderboard">
-      <h3 class="digital">Leaderboard is currently under maintenance!</h3>
-      <p>I'm moving ShmupSpeed to a new framework and in the meantime I've taken down the leaderboard and sharing functionality. Neither was very popular, analytics show that neither get much use at all and people mostly come to the site to try their hand at the "game" a few times then&nbsp;leave.</p>
-      <p>I do plan to put up a new leaderboard eventually but I'm hoping I can do so in such a way that will make it a bit harder to hack and fill with 999&nbsp;scores!</p>
-    </section>
+    <!-- Footer -->
+    <footer>© <span id="this-year"></span> Douglas Glover</footer>
 
-    <!-- About -->
-    <section id="about">
-      <p>ShmupSpeed.com aims to provide a fun and accurate method of tracking your "Presses Per Second" (PPS). Shoot-em-up game fans work hard to press buttons super fast to kill alien scum and the like, and this site is here to help you practice and gauge your skills.</p>
-      <p>Here on the site you can use your <strong>Keyboard</strong>, or any <strong>Gamepad controller</strong> connected to your PC to test your button mashing mettle. While on the GAME page just start pressing and the timer will start, and your score will go up! Divide by ten and you've got your PPS!</p>
-      <p class="mobile">On your phone you can <strong>tap on the A & B buttons</strong> provided to test your skills on the go!</p>
-      <p>The inspiration for this site was the Hudson Shooting Watches from Japan, which have not been available for sale since around 2008, shown below, and follows the same logic for calculating PPS:</p>
-      <img src="img/hudson.png" alt="Hudson Shooting Watch">
-    </section>
-
-    <!-- Support -->
-    <section id="support">
-      <p>I'm running this site totally out of pocket, and I am ok with that. If you like the site and want to show your support, the best way to do so would be to donate to charity!</p>
-      <p>Every year I participate in <strong>Extra Life</strong>, raising funds for Sick Kids Hospital, supporting the kids who need it most.</p>
-      <p>If you've got a few bucks to spare, you can visit my donor link here:<br/><br/>
-          <strong><a href="https://www.extra-life.org/index.cfm?fuseaction=donorDrive.participant&participantID=247368" target="_blank" id="extra-life">Douglas Glover @ Extra Life</a></strong></p>
-    </section>
-  </div>
-
-  <!-- Rom download (floating cartridge) -->
-  <section id="cartridge" class="desktop">
-    <a href="rom/shmupspeed.nes">
-        <img src="img/cartridge.png" alt="Shmup Speed NES Cartridge">
-    </a>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © <span id="this-year"></span> Douglas Glover
-  </footer>
-
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
-  <script src="./js/controller.js"></script>
-  <script src="./js/interact.js"></script>
-</body>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+    <script src="./js/controller.js"></script>
+    <script src="./js/interact.js"></script>
+  </body>
 </html>
