@@ -4,4 +4,4 @@ ShmupSpeed is a site dedicated to clicking buttons fast. Pretty simple concept, 
 
 # Tech Stack
 
-The site was initially built on the Symfony 3 PHP framework for a few features including a leaderboard and dynamic sharing functionality. More recently though I've stripped out the PHP side in order to host it for cheaper on a static site host (Netlify) while I work on rebuilding it on a new stack (likely Vue/Nuxt).
+The site was initially built on the Symfony 3 PHP framework for a few features including a leaderboard and dynamic sharing functionality. More recently though I've stripped out the PHP side in order to host it for cheaper on a static site host (Netlify) to keep things simple.
