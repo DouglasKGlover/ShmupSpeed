@@ -82,15 +82,6 @@ function updateScore(){
     $("#score").text(pad(score,3));
 }
 
-/* Google Analytics */
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-ga('create', 'UA-48989090-9', 'auto');
-ga('send', 'pageview');
-
 /* Interactions */
 $(document).ready(function(){
     /* Greensock (GSAP) animations */
@@ -178,9 +169,6 @@ $(document).ready(function(){
 
     // Gamepad Controller
     var $gamepad = new Gamepad();
-    $gamepad.on("connect", function(e){
-        ga('send', 'event', 'Gamepad', 'Gamepad detected', e);
-    });
 
     for(var x in $gamepad._keyMapping.gamepad){
         var gpadPressed = x.toString();
@@ -194,7 +182,6 @@ $(document).ready(function(){
         $gamepad.on("release", gpadReleased, function(e){
             btnReleased();
             tmpPlatform = "controller";
-            // ga('send', 'event', 'Gamepad', 'Gamepad pressed', e);
         });
     }
 
@@ -203,13 +190,11 @@ $(document).ready(function(){
     // Reset the scoreboard
     $(".reset").click(function(){
         reset();
-        ga('send', 'event', 'Options', 'Reset');
     });
 
     // Submit score
     $(".submit").click(function(e){
         submitScore(e);
-        ga('send', 'event', 'Options', 'Score submitted', "Score: " + score);
     });
 
     // Footer copyright year
@@ -222,8 +207,6 @@ $(document).ready(function(){
             var selectedSection = e.target.className.split("-")[1];
             swapping = true;
 
-            ga('send', 'pageview', selectedSection);
-
             $("#options").find("input").removeClass("active");
             $(".wrapper").find("section").removeClass("active");
             $(this).addClass("active");
@@ -235,27 +218,11 @@ $(document).ready(function(){
         }
     });
 
-    // Cartridge clicked
-    $("#cartridge").click(function(){
-        ga('send', 'event', 'Cartridge', 'NES ROM downloaded');
-    });
-
     // Social Shares
     $("#share-fb, #share-tw").click(function(e){
         e.preventDefault();
 
         var url = $(this).attr("href");
         window.open(url, "Share your score", "width=400,height=400,scrollbars=yes");
-    });
-
-    // Extra Analytics
-    $("#extra-life").click(function(){
-        ga('send', 'pageview', '/Extra Life');
-    });
-    $("#share-fb").click(function(){
-        ga('send', 'event', 'Share', "Facebook Share", "Shared score: " + score);
-    });
-    $("#share-tw").click(function(){
-        ga('send', 'event', 'Share', "Twitter Share", "Shared score: " + score);
     });
 });
